@@ -24,7 +24,7 @@ Both channels use the same endpoint — specify `"channel": "sms"` or `"channel"
 ## Quick Example
 
 ```bash
-curl -X POST https://app.sendlime.com/api/v2/messages \
+curl -X POST https://brain.sendlime.com/api/v2/messages \
   -H "Authorization: Bearer sl_live_your_key_here" \
   -H "Content-Type: application/json" \
   -d '{

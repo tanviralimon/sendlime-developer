@@ -13,12 +13,12 @@ Welcome to the SendLime API v2 platform! SendLime provides REST APIs that enable
 - [Accessing the Dashboard](#accessing-the-dashboard)
 
 ## Signing up for an account
-To work with our APIs, you will need to [sign up for an account](https://app.sendlime.com).
+To work with our APIs, you will need to [sign up for an account](https://dash.sendlime.com).
 
 ## Creating an API Key
 Once you have an account, navigate to **API Keys** in your dashboard to generate a key.
 
-1. Go to the [API Keys](https://app.sendlime.com/dashboard/api-keys) page
+1. Go to the [API Keys](https://dash.sendlime.com/dashboard/api-keys) page
 2. Click **Create API Key** and give it a name (e.g. "Production Server")
 3. Copy the key immediately — it starts with `sl_live_` and **will only be shown once**
 4. Store it securely (e.g. in environment variables)
@@ -34,7 +34,7 @@ Your API key is a secret. Do not commit it to version control or expose it in cl
 Use your API key in the `Authorization` header as a Bearer token:
 
 ```bash
-curl -X POST https://app.sendlime.com/api/v2/messages \
+curl -X POST https://brain.sendlime.com/api/v2/messages \
   -H "Authorization: Bearer sl_live_your_key_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -60,7 +60,7 @@ A successful response looks like:
 ```
 
 ## Accessing the Dashboard
-The [Dashboard](https://app.sendlime.com/dashboard) lets you:
+The [Dashboard](https://dash.sendlime.com/dashboard) lets you:
 
 - **Manage API keys.** Create, view, and revoke keys.
 - **View message logs.** See all sent messages with delivery status.
@@ -72,7 +72,7 @@ The [Dashboard](https://app.sendlime.com/dashboard) lets you:
 All API endpoints use the following base URL:
 
 ```
-https://app.sendlime.com/api/v2
+https://brain.sendlime.com/api/v2
 ```
 
 ## Authentication

@@ -59,7 +59,7 @@ const config = {
             label: "Docs",
           },
           {
-            href: "https://app.sendlime.com/dashboard",
+            href: "https://dash.sendlime.com/dashboard",
             label: "Dashboard",
             position: "right",
           },
@@ -108,7 +108,7 @@ const config = {
             items: [
               {
                 label: "Dashboard",
-                href: "https://app.sendlime.com/dashboard",
+                href: "https://dash.sendlime.com/dashboard",
               },
               {
                 label: "GitHub",

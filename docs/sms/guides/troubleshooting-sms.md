@@ -66,13 +66,13 @@ Your API key must start with `sl_live_`. Make sure you're using the full key fro
 ```json
 { "error": "Invalid or revoked API key" }
 ```
-The key doesn't exist or has been revoked. Generate a new one from the [API Keys](https://app.sendlime.com/dashboard/api-keys) page.
+The key doesn't exist or has been revoked. Generate a new one from the [API Keys](https://dash.sendlime.com/dashboard/api-keys) page.
 
 ### Insufficient balance
 ```json
 { "error": "Insufficient balance", "required": 0.5, "available": 0 }
 ```
-Top up your account balance from the [Billing](https://app.sendlime.com/dashboard/billing/payments) page.
+Top up your account balance from the [Billing](https://dash.sendlime.com/dashboard/billing/payments) page.
 
 ### Validation failed
 ```json
