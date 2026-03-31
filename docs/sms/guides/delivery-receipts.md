@@ -2,40 +2,49 @@
 sidebar_position: 3
 ---
 
-# Delivery receipts
-When you make a successful request to the SMS API, it returns a json object. Ideally it will have a `status` of `pending`, indicating success. But this does not mean that your message has reached your recipients. It only means that your message has been successfully queued for sending.
+# Delivery Status
+
+When you send a message via the API, the response includes a `status` field indicating the delivery outcome.
 
 :::info
 
-In most situations, a DLR is a reliable indicator that a message was delivered. However, it is not an absolute guarantee.
+A `"status": "delivered"` means the message was accepted by the carrier network. In most situations this is a reliable indicator, but it is not an absolute guarantee of handset delivery.
 
 :::
 
-## Understanding the delivery receipt
-This is a typical DLR:
+## Understanding the response
+
+A successful send returns:
+
 ```json
 {
-  "api_key": "bnfOlpuC",
-  "to": "8801798110912",
-  "from": "8809612436844",
-  "message_id": "5600008304BA3YNX",
-  "price": "0.19",
-  "status": "delivered"
+  "success": true,
+  "data": {
+    "gateway_id": "580000908Q23PJCF",
+    "to": "8801XXXXXXXXX",
+    "channel": "sms",
+    "status": "delivered",
+    "credits_remaining": 99.5
+  }
 }
 ```
 
-The most important field is `status` as this tell you whether your message was delivered and, if not, what went wrong.
+## Status values
 
-## DLR status messages
-The `status` field in the DLR tells you if your SMS was delivered successfully. Possible values are:
+The `status` field can have the following values:
 
 | `status`      | Description                                                            |
 |---------------|------------------------------------------------------------------------|
-| `accepted`    | Message has been accepted for delivery, but has not yet been delivered |
-| `pending`     | Message is being sent                                                  |
-| `delivered`   | Message has been delivered                                             |
-| `expired`     | Message was held at downstream carrier's retry scheme and could not be delivered within the expiry time |
-| `undelivered` | Message not delivered                                                  |
-| `failed`      | Message not delivered                                                  |
-| `rejected`    | Downstream carrier refuses to deliver message                          |
-| `unknown`     | No useful information available                                        |
+| `delivered`   | Message has been delivered to the carrier network                       |
+| `failed`      | Message could not be delivered                                         |
+
+## Checking past messages
+
+You can retrieve the status of previously sent messages using the logs endpoint:
+
+```bash
+curl "https://app.sendlime.com/api/v2/messages?limit=50" \
+  -H "Authorization: Bearer sl_live_your_key_here"
+```
+
+Each log entry includes the `status`, `channel`, `recipient`, and `createdAt` fields.

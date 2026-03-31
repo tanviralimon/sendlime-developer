@@ -6,177 +6,197 @@ no_edit_button: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Sending an SMS
+# Sending a Message
 
-To send an SMS, replace the following variables in the example below:
+To send a message, replace the following variables in the examples below:
 
-| Key                 | Description                                          |
-|---------------------|------------------------------------------------------|
-| SENDLIME_API_KEY    | Your SendLime API key (see it on [your dashboard](https://dashboard.sendlime.com)).    |
-| SENDLIME_API_SECRET | Your SendLime API secret (see it on [your dashboard](https://dashboard.sendlime.com)). |
-| SENDLIME_BRAND_NAME | The registered brand or purchased number.       |
-| TO_NUMBER           | The phone number you are sending the message to.     |
+| Key               | Description                                                                              |
+|-------------------|------------------------------------------------------------------------------------------|
+| SENDLIME_API_KEY  | Your SendLime API key starting with `sl_live_` (create one on [your dashboard](https://app.sendlime.com/dashboard/api-keys)). |
+| TO_NUMBER         | The phone number you are sending the message to (E.164 format).                          |
+| BRAND_ID          | *(Optional)* The ID of your registered brand. If omitted, a default sender is used.      |
 
 <Tabs groupId="programming-lang">
 <TabItem value="curl" label="cURL" default>
 
 :::info
 
-HTTP requests to the API are protected with [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication).
-
-User your **API Key** as the username and your **API Secret** as the password for HTTP Basic authentication.
+All API requests are authenticated using a **Bearer token** in the `Authorization` header.
 
 :::
 
-## Write the code
-
-Add the following to `send-sms.sh`:
-
-```shell
-curl -X "POST" "https://brain.sendlime.com/sms" \
-  -d "from=$SENDLIME_BRAND_NAME" \
-  -d "text=A text message sent using the SendLime API" \
-  -d "to=$TO_NUMBER" \
-  -u $SENDLIME_API_KEY:$SENDLIME_API_SECRET
-```
-
-:::info
-
-If you don't have any approved brand or any purchased number, you don't need to pass `from`. We will send the SMS from a random number.
-
-:::
-
-## Run your code
-
-Save this file to your machine and run it:
+## Send an SMS
 
 ```bash
-sh send-sms.sh
+curl -X POST "https://app.sendlime.com/api/v2/messages" \
+  -H "Authorization: Bearer $SENDLIME_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "'$TO_NUMBER'",
+    "message": "A text message sent using the SendLime API",
+    "channel": "sms"
+  }'
+```
+
+## Send a WhatsApp message
+
+```bash
+curl -X POST "https://app.sendlime.com/api/v2/messages" \
+  -H "Authorization: Bearer $SENDLIME_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "'$TO_NUMBER'",
+    "message": "A WhatsApp message sent using the SendLime API",
+    "channel": "whatsapp"
+  }'
+```
+
+## Check your balance
+
+```bash
+curl "https://app.sendlime.com/api/v2/balance" \
+  -H "Authorization: Bearer $SENDLIME_API_KEY"
+```
+
+## Fetch message logs
+
+```bash
+curl "https://app.sendlime.com/api/v2/messages?limit=10" \
+  -H "Authorization: Bearer $SENDLIME_API_KEY"
 ```
 
 </TabItem>
 <TabItem value="node" label="Node.js">
 
-## Install the library
-
-```bash
-npm install @sendlime/server-sdk
-```
-
-## Initialize the library
+## Send an SMS
 
 ```js
-const SendLime = require('@sendlime/server-sdk');
+const SENDLIME_API_KEY = "sl_live_your_key_here";
 
-const sendLime = new SendLime({
-  apiKey: SENDLIME_API_KEY,
-  apiSecret: SENDLIME_API_SECRET,
+const response = await fetch("https://app.sendlime.com/api/v2/messages", {
+  method: "POST",
+  headers: {
+    "Authorization": `Bearer ${SENDLIME_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    to: "8801XXXXXXXXX",
+    message: "A text message sent using the SendLime API",
+    channel: "sms",
+  }),
 });
+
+const data = await response.json();
+
+if (data.success) {
+  console.log("Message sent!", data.data.gateway_id);
+  console.log("Credits remaining:", data.data.credits_remaining);
+} else {
+  console.error("Failed:", data.error);
+}
 ```
 
-## Write the code
+## Send a WhatsApp message
 
 ```js
-const from = SENDLIME_BRAND_NAME;
-const to = TO_NUMBER;
-const text = "A text message sent using the SendLime API";
+const response = await fetch("https://app.sendlime.com/api/v2/messages", {
+  method: "POST",
+  headers: {
+    "Authorization": `Bearer ${SENDLIME_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    to: "8801XXXXXXXXX",
+    message: "Hello via WhatsApp!",
+    channel: "whatsapp",
+  }),
+});
 
-sendLime.message
-  .sendSms({ from, to, text })
-  .then((response) => {
-    if (response.success) {
-      console.log("Message sent successfully.");
-    } else {
-      console.log(`Message failed with error: ${response.error_message}`);
-    }
-  })
-  .catch((err) => console.log(err));
+const data = await response.json();
+console.log(data);
 ```
 
-:::info
+## Check your balance
 
-If you don't have any approved brand or any purchased number, you don't need to pass `from`. We will send the SMS from a random number.
+```js
+const response = await fetch("https://app.sendlime.com/api/v2/balance", {
+  headers: { "Authorization": `Bearer ${SENDLIME_API_KEY}` },
+});
 
-:::
+const { data } = await response.json();
+console.log(`Balance: ${data.balance} ${data.currency}`);
+```
 
 </TabItem>
-<TabItem value="java" label="Java">
+<TabItem value="python" label="Python">
 
-## Installation
+## Send an SMS
 
-### Gradle
+```python
+import requests
 
-Step 1. Add the JitPack repository to your build file
+API_KEY = "sl_live_your_key_here"
+BASE_URL = "https://app.sendlime.com/api/v2"
 
-```gradle
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
-}
+response = requests.post(
+    f"{BASE_URL}/messages",
+    headers={
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "to": "8801XXXXXXXXX",
+        "message": "A text message sent using the SendLime API",
+        "channel": "sms",
+    },
+)
+
+data = response.json()
+
+if data.get("success"):
+    print("Message sent!", data["data"]["gateway_id"])
+    print("Credits remaining:", data["data"]["credits_remaining"])
+else:
+    print("Failed:", data.get("error"))
 ```
 
-Step 2. Add the dependency
+## Send a WhatsApp message
 
-```gradle
-dependencies {
-    implementation 'com.github.SendLime:sendlime-sdk-java:v1.0.11'
-}
+```python
+response = requests.post(
+    f"{BASE_URL}/messages",
+    headers={
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "to": "8801XXXXXXXXX",
+        "message": "Hello via WhatsApp!",
+        "channel": "whatsapp",
+    },
+)
+
+print(response.json())
 ```
 
-### Maven
+## Check your balance
 
-Step 1. Add the JitPack repository to your build file
+```python
+response = requests.get(
+    f"{BASE_URL}/balance",
+    headers={"Authorization": f"Bearer {API_KEY}"},
+)
 
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
+data = response.json()["data"]
+print(f"Balance: {data['balance']} {data['currency']}")
 ```
-
-Step 2. Add the dependency
-
-```xml
-<dependency>
-    <groupId>com.github.SendLime</groupId>
-    <artifactId>sendlime-sdk-java</artifactId>
-    <version>v1.0.11</version>
-</dependency>
-```
-
-## Write the code
-
-```java
-SendLimeClient client = SendLimeClient.build().apiKey(SENDLIME_API_KEY).apiSecret(SENDLIME_API_SECRET).build();
-
-SendMessageResponse networkResponse = client.getSmsClient().sendMessage(
-    SENDLIME_BRAND_NAME,
-    TO_NUMBER,
-    "A text message sent using the SendLime API"
-);
-
-if (response.isSuccess()) {
-    System.out.println("Message sent successfully");
-} else {
-    System.out.println("Message failed with error: " + response.getErrorMessage());
-}
-```
-
-:::info
-
-If you don't have any approved brand or any purchased number, you don't need to pass the first argument to the `sendMessage` function. We will send the SMS from a random number.
-
-:::
 
 </TabItem>
 </Tabs>
 
 ### Try it out
 
-When you run the example above, the text message will be sent to the mobile number that you specified.
+When you run the example above, the message will be sent to the phone number that you specified.
 
 :::caution
 

@@ -1,20 +1,18 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "SendLime Developer",
-  tagline: "Communications API",
+  tagline: "SMS & WhatsApp Messaging API",
   url: "https://developer.sendlime.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "sendlime", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "sendlime",
+  projectName: "docusaurus",
 
   presets: [
     [
@@ -23,15 +21,9 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
           editUrl: "https://github.com/samiulhsohan/sendlime-developer/edit/master/",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/samiulhsohan/sendlime-developer/edit/master/blog/",
-        },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -66,7 +58,11 @@ const config = {
             position: "left",
             label: "Docs",
           },
-          // { to: "/blog", label: "Blog", position: "left" },
+          {
+            href: "https://app.sendlime.com/dashboard",
+            label: "Dashboard",
+            position: "right",
+          },
           {
             href: "https://github.com/SendLime/",
             label: "GitHub",
@@ -85,8 +81,12 @@ const config = {
                 to: "/docs/overview",
               },
               {
-                label: "Messaging",
+                label: "Messaging API",
                 to: "/docs/sms/overview",
+              },
+              {
+                label: "API Reference",
+                to: "/docs/sms/api-reference/send-message",
               },
             ],
           },
@@ -107,13 +107,13 @@ const config = {
             title: "More",
             items: [
               {
+                label: "Dashboard",
+                href: "https://app.sendlime.com/dashboard",
+              },
+              {
                 label: "GitHub",
                 href: "https://github.com/sendlime",
               },
-              // {
-              //   label: "Blog",
-              //   to: "/blog",
-              // },
             ],
           },
         ],
@@ -122,7 +122,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['java'],
+        additionalLanguages: ['java', 'python', 'bash'],
       },
       hotjar: {
         applicationId: 2795161,
