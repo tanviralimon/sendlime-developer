@@ -12,7 +12,7 @@ function HomepageHeader() {
     <header className={styles.heroBanner}>
       <div className="container">
         <h1 className="hero__title">SendLime Developer Center</h1>
-        <p className="hero__subtitle">Integrate SMS to your apps with SendLime APIs and SDKs.</p>
+        <p className="hero__subtitle">Integrate SMS &amp; WhatsApp messaging into your apps with SendLime APIs.</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"

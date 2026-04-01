@@ -6,7 +6,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "SendLime Developer",
   tagline: "SMS & WhatsApp Messaging API",
-  url: "https://developer.sendlime.com",
+  url: "https://docs.sendlime.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -21,7 +21,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/samiulhsohan/sendlime-developer/edit/master/",
+          editUrl: "https://github.com/tanviralimon/sendlime-developer/edit/master/",
         },
         blog: false,
         theme: {
