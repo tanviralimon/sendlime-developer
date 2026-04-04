@@ -34,7 +34,7 @@ Your API key is a secret. Do not commit it to version control or expose it in cl
 Use your API key in the `Authorization` header as a Bearer token:
 
 ```bash
-curl -X POST https://brain.sendlime.com/api/v2/messages \
+curl -X POST https://api.sendlime.com/api/v2/messages \
   -H "Authorization: Bearer sl_live_your_key_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -72,7 +72,7 @@ The [Dashboard](https://dash.sendlime.com/dashboard) lets you:
 All API endpoints use the following base URL:
 
 ```
-https://brain.sendlime.com/api/v2
+https://api.sendlime.com/api/v2
 ```
 
 ## Authentication

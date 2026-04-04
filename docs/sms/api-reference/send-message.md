@@ -23,18 +23,19 @@ Authorization: Bearer sl_live_your_key_here
 | `to`        | `string` | Yes      | Recipient phone number in E.164 format (e.g. `8801XXXXXXXXX`). |
 | `message`   | `string` | Yes      | The message body to send.                                       |
 | `channel`   | `string` | No       | `"sms"` (default) or `"whatsapp"`.                              |
-| `brand_id`  | `string` | No       | Brand ID for sender identity. If omitted, default sender is used. |
+| `brand_id`  | `string` | SMS: Yes | Brand ID for sender identity. Required for SMS, optional for WhatsApp. |
 
 ## Example request
 
 ```bash
-curl -X POST "https://brain.sendlime.com/api/v2/messages" \
+curl -X POST "https://api.sendlime.com/api/v2/messages" \
   -H "Authorization: Bearer sl_live_your_key_here" \
   -H "Content-Type: application/json" \
   -d '{
     "to": "8801XXXXXXXXX",
     "message": "Hello from SendLime!",
-    "channel": "sms"
+    "channel": "sms",
+    "brand_id": "your_brand_id_here"
   }'
 ```
 

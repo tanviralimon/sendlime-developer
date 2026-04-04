@@ -34,14 +34,14 @@ Both `from` and `to` must be provided together for date filtering to work.
 ## Example request
 
 ```bash
-curl "https://brain.sendlime.com/api/v2/messages?limit=10&page=1" \
+curl "https://api.sendlime.com/api/v2/messages?limit=10&page=1" \
   -H "Authorization: Bearer sl_live_your_key_here"
 ```
 
 ### With date filter
 
 ```bash
-curl "https://brain.sendlime.com/api/v2/messages?from=2025-01-01&to=2025-01-31&limit=50" \
+curl "https://api.sendlime.com/api/v2/messages?from=2025-01-01&to=2025-01-31&limit=50" \
   -H "Authorization: Bearer sl_live_your_key_here"
 ```
 

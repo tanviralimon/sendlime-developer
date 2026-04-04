@@ -25,5 +25,5 @@ Authorization: Bearer sl_live_your_key_here
 ## Base URL
 
 ```
-https://brain.sendlime.com/api/v2
+https://api.sendlime.com/api/v2
 ```

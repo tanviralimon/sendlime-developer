@@ -19,7 +19,7 @@ Authorization: Bearer sl_live_your_key_here
 ## Example request
 
 ```bash
-curl "https://brain.sendlime.com/api/v2/balance" \
+curl "https://api.sendlime.com/api/v2/balance" \
   -H "Authorization: Bearer sl_live_your_key_here"
 ```
 

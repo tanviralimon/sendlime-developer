@@ -4,24 +4,40 @@ sidebar_position: 1
 
 # Sender Identity
 
-When sending SMS, messages are sent from the number associated with your brand. You can control this using the `brand_id` parameter.
+When sending SMS messages, you must specify a `brand_id` to identify the sender. There are two types of SMS:
 
-## How it works
+## Masking SMS
 
-- If you pass a `brand_id` in the request, the message will be sent from the number registered to that brand.
-- If you omit `brand_id`, a default sender number is used.
-
-## For WhatsApp
-
-When sending WhatsApp messages with a `brand_id`, the message is sent from the WhatsApp profile linked to that brand. The brand must have a WhatsApp profile configured in the dashboard.
-
-## Example
+The message is sent using your **brand name** as the sender (e.g., "ORCUS TECH"). Pass your approved brand name as `brand_id`.
 
 ```json
 {
   "to": "8801XXXXXXXXX",
   "message": "Hello!",
   "channel": "sms",
-  "brand_id": "your_brand_id_here"
+  "brand_id": "ORCUS TECH"
 }
 ```
+
+## Non-Masking SMS
+
+The message is sent from a **phone number**. Pass your registered phone number brand as `brand_id`.
+
+```json
+{
+  "to": "8801XXXXXXXXX",
+  "message": "Hello!",
+  "channel": "sms",
+  "brand_id": "8809601001229"
+}
+```
+
+## How it works
+
+- The `brand_id` parameter is **required for SMS** messages.
+- You can pass either the brand **name** or the brand **database ID**.
+- The brand must be in **approved** status in your dashboard.
+
+## For WhatsApp
+
+For WhatsApp messages, `brand_id` is **not needed**. Your default WhatsApp profile is used automatically.

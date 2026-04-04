@@ -43,7 +43,7 @@ The `status` field can have the following values:
 You can retrieve the status of previously sent messages using the logs endpoint:
 
 ```bash
-curl "https://brain.sendlime.com/api/v2/messages?limit=50" \
+curl "https://api.sendlime.com/api/v2/messages?limit=50" \
   -H "Authorization: Bearer sl_live_your_key_here"
 ```
 
