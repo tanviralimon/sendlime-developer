@@ -12,6 +12,28 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+.theme-doc-sidebar-menu {
+  font-size: 0.95rem;
+}
+
+.menu__list .menu__list {
+  margin-top: 0.15rem;
+  padding-left: 0.75rem;
+}
+
+.menu__list-item {
+  margin: 0.08rem 0;
+}
+
+.menu__link {
+  border-radius: 6px;
+  line-height: 1.35;
+}
+
+.menu__link--active {
+  font-weight: 600;
+}
+
 :root {
   --ifm-color-primary: hsl(228, 100%, 47%);
   --ifm-color-primary-dark: hsl(228, 100%, 42%);

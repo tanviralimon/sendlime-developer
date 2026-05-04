@@ -17,11 +17,11 @@ const sidebars = {
     {
       type: 'doc',
       id: 'overview',
-      label: 'Getting started',
+      label: 'Start here',
     },
     {
       type: 'category',
-      label: 'Messaging API',
+      label: 'Messaging',
       collapsed: false,
       items: [
         {
@@ -31,60 +31,76 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'sms/api-reference/send-message',
-          label: 'Send a message',
-        },
-        {
-          type: 'doc',
-          id: 'sms/guides/whatsapp',
-          label: 'WhatsApp messaging',
-        },
-        {
-          type: 'doc',
-          id: 'sms/guides/sender-id',
-          label: 'Sender identity',
-        },
-        {
-          type: 'doc',
-          id: 'sms/guides/numbers',
-          label: 'Number format',
-        },
-        {
-          type: 'doc',
-          id: 'sms/api-reference/message-logs',
-          label: 'Message logs',
-        },
-        {
-          type: 'doc',
-          id: 'sms/api-reference/balance',
-          label: 'Check balance',
-        },
-        {
-          type: 'doc',
           id: 'sms/code-snippets/before-you-begin',
           label: 'Before you begin',
         },
         {
-          type: 'doc',
-          id: 'sms/code-snippets/sending-an-sms',
-          label: 'Code examples',
+          type: 'category',
+          label: 'Send messages',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'sms/api-reference/send-message',
+              label: 'SMS and WhatsApp',
+            },
+            {
+              type: 'doc',
+              id: 'sms/code-snippets/sending-an-sms',
+              label: 'Code examples',
+            },
+          ],
         },
         {
-          type: 'doc',
-          id: 'sms/guides/delivery-receipts',
-          label: 'Delivery status',
+          type: 'category',
+          label: 'Guides',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'sms/guides/whatsapp',
+              label: 'WhatsApp',
+            },
+            {
+              type: 'doc',
+              id: 'sms/guides/sender-id',
+              label: 'Sender identity',
+            },
+            {
+              type: 'doc',
+              id: 'sms/guides/numbers',
+              label: 'Number format',
+            },
+            {
+              type: 'doc',
+              id: 'sms/guides/delivery-receipts',
+              label: 'Delivery status',
+            },
+            {
+              type: 'doc',
+              id: 'sms/guides/troubleshooting-sms',
+              label: 'Troubleshooting',
+            },
+          ],
         },
         {
-          type: 'doc',
-          id: 'sms/guides/troubleshooting-sms',
-          label: 'Troubleshooting',
+          type: 'category',
+          label: 'Endpoints',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'sms/api-reference/message-logs',
+              label: 'Message logs',
+            },
+            {
+              type: 'doc',
+              id: 'sms/api-reference/balance',
+              label: 'Balance',
+            },
+          ],
         },
       ],
-    },
-    {
-      type: 'link',
-      label: 'Full API Reference',
-      href: 'https://api.sendlime.com/api-docs',
     },
   ],
 };
