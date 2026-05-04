@@ -14,7 +14,7 @@ To send a message, replace the following variables in the examples below:
 |-------------------|------------------------------------------------------------------------------------------|
 | SENDLIME_API_KEY  | Your SendLime API key starting with `sl_live_` (create one on [your dashboard](https://dash.sendlime.com/dashboard/api-keys)). |
 | TO_NUMBER         | The phone number you are sending the message to (E.164 format).                          |
-| BRAND_ID          | *(Optional)* Your approved brand name (for masking SMS). If omitted, the system default number is used. |
+| BRAND_ID          | *(Optional)* Your approved SMS sender or WhatsApp profile. If omitted, the default sender/profile is used. |
 
 <Tabs groupId="programming-lang">
 <TabItem value="curl" label="cURL" default>
@@ -416,6 +416,29 @@ func main() {
     body, _ := io.ReadAll(resp.Body)
     fmt.Println(string(body))
 }
+```
+
+## Send a WhatsApp message
+
+```go
+payload, _ := json.Marshal(map[string]string{
+    "to":      "8801XXXXXXXXX",
+    "message": "Hello via WhatsApp!",
+    "channel": "whatsapp",
+})
+
+req, _ := http.NewRequest("POST", "https://api.sendlime.com/api/v2/messages", bytes.NewBuffer(payload))
+req.Header.Set("Authorization", "Bearer "+apiKey)
+req.Header.Set("Content-Type", "application/json")
+
+resp, err := http.DefaultClient.Do(req)
+if err != nil {
+    panic(err)
+}
+defer resp.Body.Close()
+
+body, _ := io.ReadAll(resp.Body)
+fmt.Println(string(body))
 ```
 
 ## Check your balance

@@ -2,9 +2,14 @@
 sidebar_position: 1
 ---
 
-# Sender Identity
+# Sender Identity and WhatsApp Profiles
 
-When sending SMS messages, you must specify a `brand_id` to identify the sender. There are two types of SMS:
+`brand_id` is an optional selector for the sender or profile you want to use.
+
+If you omit `brand_id`, SendLime uses a default sender/profile:
+
+- SMS uses the default non-masking sender.
+- WhatsApp uses your default WhatsApp profile.
 
 ## Masking SMS
 
@@ -34,10 +39,22 @@ The message is sent from a **phone number**. Pass your registered phone number b
 
 ## How it works
 
-- The `brand_id` parameter is **required for SMS** messages.
-- You can pass either the brand **name** or the brand **database ID**.
+- The `brand_id` parameter is optional.
+- For SMS, pass an approved brand name, registered non-masking phone number, or brand database ID.
 - The brand must be in **approved** status in your dashboard.
+- If you omit `brand_id`, SMS uses the default non-masking sender.
 
 ## For WhatsApp
 
-For WhatsApp messages, `brand_id` is **not needed**. Your default WhatsApp profile is used automatically.
+For WhatsApp messages, `brand_id` is not needed for the common case. Your default WhatsApp profile is used automatically.
+
+Pass `brand_id` only when you want to route through a specific approved WhatsApp profile.
+
+```json
+{
+  "to": "8801XXXXXXXXX",
+  "message": "Hello on WhatsApp!",
+  "channel": "whatsapp",
+  "brand_id": "your_whatsapp_profile_brand_id"
+}
+```

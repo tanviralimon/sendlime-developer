@@ -67,7 +67,9 @@ curl "https://api.sendlime.com/api/v2/messages?from=2025-01-01&to=2025-01-31&lim
   ],
   "pagination": {
     "page": 1,
-    "limit": 10
+    "limit": 10,
+    "total": 57,
+    "total_pages": 6
   }
 }
 ```
@@ -79,9 +81,18 @@ curl "https://api.sendlime.com/api/v2/messages?from=2025-01-01&to=2025-01-31&lim
 | `id`           | `string`        | Unique log entry ID                       |
 | `recipient`    | `string`        | Recipient phone number                    |
 | `message`      | `string`        | Message body                              |
-| `channel`      | `string`        | `"non-mask"` or `"whatsapp"`              |
-| `status`       | `string`        | `"delivered"` or `"failed"`               |
+| `channel`      | `string`        | `"mask"`, `"non-mask"`, or `"whatsapp"`   |
+| `status`       | `string`        | `accepted`, `pending`, `delivered`, `undelivered`, `failed`, `unknown`, or `rejected` |
 | `price`        | `string`        | Cost of the message                       |
 | `gatewayId`    | `string|null`   | Gateway message ID                        |
 | `errorMessage` | `string|null`   | Error details if failed                   |
 | `createdAt`    | `string`        | ISO 8601 timestamp                        |
+
+### Pagination fields
+
+| Field         | Type     | Description                    |
+|---------------|----------|--------------------------------|
+| `page`        | `number` | Current page                   |
+| `limit`       | `number` | Results per page               |
+| `total`       | `number` | Total matching messages        |
+| `total_pages` | `number` | Total available pages          |

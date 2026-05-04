@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Troubleshooting
@@ -50,8 +50,10 @@ As per the BTRC guidelines, promotional messages have to be in Bangla.
 | `200`       | Success                | The message was successfully sent.                                  |
 | `400`       | Bad Request            | Invalid request body, missing fields, or recipient not on WhatsApp. |
 | `401`       | Unauthorized           | Missing, invalid, or revoked API key.                               |
+| `403`       | Forbidden              | Request IP is not allowed by the API key IP whitelist.              |
 | `402`       | Payment Required       | Insufficient balance to send the message.                           |
 | `422`       | Validation Error       | Request body failed validation (check `details` field).             |
+| `429`       | Too Many Requests      | API key rate limit exceeded.                                        |
 | `500`       | Internal Server Error  | An error occurred while processing the message.                     |
 
 ## Common errors
@@ -73,6 +75,30 @@ The key doesn't exist or has been revoked. Generate a new one from the [API Keys
 { "error": "Insufficient balance", "required": 0.5, "available": 0 }
 ```
 Top up your account balance from the [Billing](https://dash.sendlime.com/dashboard/billing/payments) page.
+
+### Recipient is not on WhatsApp
+```json
+{ "error": "Recipient number is not on WhatsApp" }
+```
+Use a phone number that is registered on WhatsApp, without spaces or symbols.
+
+### Brand not found or not approved
+```json
+{ "error": "Brand not found or not approved" }
+```
+Use an approved SMS sender or WhatsApp profile, or omit `brand_id` to use the default sender/profile.
+
+### Unauthorized IP address
+```json
+{ "error": "Request from unauthorized IP address" }
+```
+Update the API key IP whitelist in the dashboard, or send the request from an allowed IP.
+
+### Rate limit exceeded
+```json
+{ "error": "Rate limit exceeded", "retry_after": 42 }
+```
+Wait for the `retry_after` seconds value before retrying.
 
 ### Validation failed
 ```json

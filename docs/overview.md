@@ -59,6 +59,20 @@ A successful response looks like:
 }
 ```
 
+You can also send WhatsApp messages through the same endpoint by setting
+`"channel": "whatsapp"`.
+
+```bash
+curl -X POST https://api.sendlime.com/api/v2/messages \
+  -H "Authorization: Bearer sl_live_your_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "8801XXXXXXXXX",
+    "message": "Hello on WhatsApp!",
+    "channel": "whatsapp"
+  }'
+```
+
 ## Accessing the Dashboard
 The [Dashboard](https://dash.sendlime.com/dashboard) lets you:
 
@@ -82,3 +96,10 @@ Every request must include your API key in the `Authorization` header:
 ```
 Authorization: Bearer sl_live_your_key_here
 ```
+
+## Channels
+
+| Channel | Value | Notes |
+|---------|-------|-------|
+| SMS | `sms` | Costs `0.5` BDT per delivered message. If `brand_id` is omitted, SendLime uses the default non-masking sender. |
+| WhatsApp | `whatsapp` | Currently costs `0` credits. SendLime checks whether the recipient is on WhatsApp before sending. |
