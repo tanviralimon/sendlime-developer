@@ -38,7 +38,7 @@ curl -X POST https://api.sendlime.com/api/v2/messages \
 
 - [Code Snippets](code-snippets/before-you-begin) — Ready-to-use examples in cURL, Node.js, and Python
 - [Guides](guides/numbers) — Number formatting, sender identity, troubleshooting
-- [API Reference](api-reference/send-message) — Full endpoint documentation
+- [API Reference](https://api.sendlime.com/api-docs) — Full endpoint documentation
 
 ## Concepts
 

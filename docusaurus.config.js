@@ -59,7 +59,7 @@ const config = {
             label: "Docs",
           },
           {
-            to: "/api-docs",
+            href: "https://api.sendlime.com/api-docs",
             label: "API Reference",
             position: "left",
           },
@@ -91,7 +91,7 @@ const config = {
               },
               {
                 label: "API Reference",
-                to: "/api-docs",
+                href: "https://api.sendlime.com/api-docs",
               },
             ],
           },

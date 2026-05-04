@@ -19,7 +19,7 @@ const sidebars = {
     {
       type: 'link',
       label: 'API References',
-      href: '/api-docs',
+      href: 'https://api.sendlime.com/api-docs',
     },
   ],
 
