@@ -6,7 +6,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "SendLime Developer",
   tagline: "SMS & WhatsApp Messaging API",
-  url: "https://docs.sendlime.com",
+  url: "https://developer.sendlime.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -59,6 +59,11 @@ const config = {
             label: "Docs",
           },
           {
+            to: "/api-docs",
+            label: "API Reference",
+            position: "left",
+          },
+          {
             href: "https://dash.sendlime.com/dashboard",
             label: "Dashboard",
             position: "right",
@@ -86,7 +91,7 @@ const config = {
               },
               {
                 label: "API Reference",
-                to: "/docs/sms/api-reference/send-message",
+                to: "/api-docs",
               },
             ],
           },
