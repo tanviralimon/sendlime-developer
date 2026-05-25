@@ -64,6 +64,12 @@ const config = {
             position: "left",
           },
           {
+            type: "doc",
+            docId: "integrations",
+            position: "left",
+            label: "Integrations",
+          },
+          {
             href: "https://dash.sendlime.com/dashboard",
             label: "Dashboard",
             position: "right",
@@ -92,6 +98,23 @@ const config = {
               {
                 label: "API Reference",
                 href: "https://api.sendlime.com/api-docs",
+              },
+              {
+                label: "Integrations",
+                to: "/docs/integrations",
+              },
+            ],
+          },
+          {
+            title: "Integrations",
+            items: [
+              {
+                label: "WHMCS Module",
+                href: "https://marketplace.whmcs.com/product/6266-sendlime",
+              },
+              {
+                label: "WordPress Plugin",
+                href: "https://wordpress.org/plugins/sendlime/",
               },
             ],
           },
