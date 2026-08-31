@@ -65,6 +65,12 @@ const config = {
           },
           {
             type: "doc",
+            docId: "sdk/quickstart",
+            position: "left",
+            label: "SDK",
+          },
+          {
+            type: "doc",
             docId: "integrations",
             position: "left",
             label: "Integrations",
@@ -96,6 +102,14 @@ const config = {
                 to: "/docs/sms/overview",
               },
               {
+                label: "Verify API",
+                to: "/docs/verify/overview",
+              },
+              {
+                label: "Node.js SDK",
+                to: "/docs/sdk/quickstart",
+              },
+              {
                 label: "API Reference",
                 href: "https://api.sendlime.com/api-docs",
               },
@@ -108,6 +122,10 @@ const config = {
           {
             title: "Integrations",
             items: [
+              {
+                label: "Node.js SDK",
+                href: "https://github.com/SendLime/sendlime-node",
+              },
               {
                 label: "WHMCS Module",
                 href: "https://marketplace.whmcs.com/product/6266-sendlime",

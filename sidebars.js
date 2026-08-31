@@ -102,6 +102,60 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Verify',
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'verify/overview',
+          label: 'Overview',
+        },
+        {
+          type: 'doc',
+          id: 'verify/send-code',
+          label: 'Send code',
+        },
+        {
+          type: 'doc',
+          id: 'verify/check-code',
+          label: 'Check code',
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Node.js SDK',
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'sdk/quickstart',
+          label: 'Quick start',
+        },
+        {
+          type: 'doc',
+          id: 'sdk/api-reference',
+          label: 'API reference',
+        },
+        {
+          type: 'doc',
+          id: 'sdk/error-handling',
+          label: 'Error handling',
+        },
+        {
+          type: 'doc',
+          id: 'sdk/better-auth',
+          label: 'Better Auth',
+        },
+      ],
+    },
+    {
+      type: 'doc',
+      id: 'integrations',
+      label: 'Integrations',
+    },
   ],
 };
 
